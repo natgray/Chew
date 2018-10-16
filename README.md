@@ -1,6 +1,6 @@
 # Chew
 
-# Group Project - *Chew*
+# CST 426 Group Project - *Chew*
 **Group Members:** 
 Natalie Gray, Nicco Engbeck, Cullen Marchenko, Roberto Bradley
 
