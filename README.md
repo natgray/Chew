@@ -44,6 +44,6 @@ Describe any challenges encountered while building the game.
 
 ## License
 
-    Copyright 2018 Roberto Bradley, Natalie Gray, Nicco Engbeck, Cullen Marchenko
+    Copyright 2018 Natalie Gray, Nicco Engbeck, Cullen Marchenko, Roberto Bradley
 
   
