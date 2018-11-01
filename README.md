@@ -1,4 +1,5 @@
-## Chew
+
+http://newtonians3d.blogspot.com/2014/09/simple-third-person-character-movement.html## Chew
 
 # CST 426 Group Project - *Chew*
 **Group Members:** 
@@ -52,3 +53,4 @@ Describe any challenges encountered while building the game.
 
  ## Possible Links For resources.
  https://www.cgtrader.com/3d-models/animals/mammal/poly-art-rabbits
+ http://newtonians3d.blogspot.com/2014/09/simple-third-person-character-movement.html
