@@ -1,71 +1,96 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerController: MonoBehaviour {
+// The GameObject is made to bounce using the space key.
+// Also the GameOject can be moved forward/backward and left/right.
+// Add a Quad to the scene so this GameObject can collider with a floor.
 
-	public Transform playerCam, character, centerPoint;
+public class PlayerController : MonoBehaviour
+{
+	public float speed = 6.0f;
+	public float jumpSpeed = 8.0f;
+	public float rabbitGravity = 20.0f;
+	private float gravity;
+	public float RotateSpeed = 3.0F;
+	public float mouseSpeed = 3.0f;
+	private Vector3 moveDirection = Vector3.zero;
+	private CharacterController controller;
+	public Transform playerCam;
+	public Camera main, pericam;
+	private bool periscoped;
+	private int rabbitState = 0; // 0 grounded, 1 is periscoped *change to more formal state implementation later
+	Vector3 temp;
 
-	private float mouseX, mouseY;
-	public float mouseSensitivity = 10f;
-	public float mouseYPosition = 1f;
-
-	private float moveFB, moveLR;
-	public float moveSpeed = 2f;
-
-	private float zoom;
-	public float zoomSpeed = 2;
-
-	public float zoomMin = -2f;
-	public float zoomMax = -10f;
-
-	public float rotationSpeed = 5f;
-
-
-
-	// Use this for initialization
-	void Start () {
-
-		zoom = -3;
-
+	void Start()
+	{
+		controller = GetComponent<CharacterController>();
+		main.enabled = true;
+		pericam.enabled = false;
+		gravity = rabbitGravity;
+		// let the gameObject fall down
+		gameObject.transform.position = new Vector3(0, 5, 0);
 	}
 
-	// Update is called once per frame
-	void Update () {
+	void Update()
+	{
+		if (controller.isGrounded)
+		{
+			// We are grounded, so recalculate
+			// move direction directly from axes
 
-		zoom += Input.GetAxis ("Mouse ScrollWheel") * zoomSpeed;
 
-		if (zoom > zoomMin)
-			zoom = zoomMin;
+			moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+			moveDirection = transform.TransformDirection(moveDirection);
+			moveDirection = moveDirection * speed;
 
-		if (zoom < zoomMax)
-			zoom = zoomMax;
+			if (Input.GetButton("Jump"))
+			{
+				moveDirection.y = jumpSpeed;
+			}
 
-		playerCam.transform.localPosition = new Vector3 (0, 0, zoom);
-
-		if (Input.GetMouseButton (1)) {
-			mouseX += Input.GetAxis ("Mouse X");
-			mouseY -= Input.GetAxis ("Mouse Y");
-		}
-
-		mouseY = Mathf.Clamp (mouseY, -60f, 60f);
-		playerCam.LookAt (centerPoint);
-		centerPoint.localRotation = Quaternion.Euler (mouseY, mouseX, 0);
-
-		moveFB = Input.GetAxis ("Vertical") * moveSpeed;
-		moveLR = Input.GetAxis ("Horizontal") * moveSpeed;
-
-		Vector3 movement = new Vector3 (moveLR, 0, moveFB);
-		movement = character.rotation * movement;
-		character.GetComponent<CharacterController> ().Move (movement * Time.deltaTime);
-		centerPoint.position = new Vector3 (character.position.x, character.position.y + mouseYPosition, character.position.z);
-
-		if (Input.GetAxis ("Vertical") > 0 | Input.GetAxis ("Vertical") < 0) {
-
-			Quaternion turnAngle = Quaternion.Euler (0, centerPoint.eulerAngles.y, 0);
-
-			character.rotation = Quaternion.Slerp (character.rotation, turnAngle, Time.deltaTime * rotationSpeed);
 
 		}
+		if (Input.GetMouseButton (1) && rabbitState == 0) {
+			// periscope
+			rabbitState = 1; //switch state
+			periscope();
+			
+		} else if (!Input.GetMouseButton (1) && rabbitState == 1) {
+			rabbitState = 0; //switch state
+			unPeriscope();
+		}
 
+		// Apply gravity
+		moveDirection.y = moveDirection.y - (gravity * Time.deltaTime);
+
+		// Move the controller
+		controller.Move(moveDirection * Time.deltaTime);
+		// rotate with A and D
+		//transform.Rotate(0, Input.GetAxis("Horizontal") * RotateSpeed, 0);
+		//rotate with mouse 
+		float X = Input.GetAxis("Mouse X") * mouseSpeed;
+		if (rabbitState == 0) {
+			transform.Rotate (0, X, 0);
+		}
+	}
+
+	void periscope(){
+		// Periscope
+		gravity = 0; //Find a better way to do this, very prone to bugs
+		transform.Rotate(-80, 0, 0);
+		temp = new Vector3 (transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+		transform.position = new Vector3(temp.x, temp.y+0.3F, temp.z);
+		moveDirection = Vector3.zero;
+		main.enabled = false;
+		pericam.enabled = true;
+	}
+
+	void unPeriscope(){
+		//end periscope
+		transform.position = temp;
+		gravity = rabbitGravity;
+		transform.Rotate(80, 0, 0);
+		main.enabled = true;
+		pericam.enabled = false;
 	}
 }
