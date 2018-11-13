@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
+
 		if (controller.isGrounded)
 		{
 			// We are grounded, so recalculate
