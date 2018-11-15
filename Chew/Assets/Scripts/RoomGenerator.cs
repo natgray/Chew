@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Next step is to deterimine rotation objects should have
+// Then make them line up to the right cells
+// Then start adding rules
 public class RoomGenerator : MonoBehaviour {
 	// Temp variables for creating a visual map
 	public GameObject prefab, prefabBed, prefabDresser, prefabcouch;
 	public Transform testarea;
+	List<GameObject> cubes;
+
 	public int oneXoneSize;
 	public GameObject [] oneXonePrefabs;
 	Vector2 roomSize;
@@ -17,6 +22,7 @@ public class RoomGenerator : MonoBehaviour {
 	List<Vector2> takenPositions = new List<Vector2> (); // List of cells that are marked as taken
 
 	void Start(){
+		cubes = new List<GameObject>();
 		//oneXonePrefabs = new GameObject[oneXoneSize];
 		if (gridSizeX <= 0) {
 			gridSizeX = 4;
@@ -33,8 +39,8 @@ public class RoomGenerator : MonoBehaviour {
 		}
 		CreatePathways (); //This procedurally generates a pathway 
 		FillavailblePositions ();
-		DrawMap ();
 		populateRoom ();
+		DrawMap();
 	}
 
 	void CreatePathways(){
@@ -179,16 +185,35 @@ public class RoomGenerator : MonoBehaviour {
 	}
 
 	void DrawMap(){
+		if(cubes.Count != 0)
+		{
+			foreach(GameObject c in cubes)
+			{
+				Destroy(c);
+				cubes.Remove(c);
+			}
+		}
 		foreach (GridSpace s in spaces) {
-			if (!s.walkway) {
-				GameObject whiteCube = Object.Instantiate (prefab, Vector3.zero, Quaternion.identity);
-				whiteCube.transform.SetParent (testarea);
-				whiteCube.transform.localPosition = new Vector3 (s.gridPos.x, 0, s.gridPos.y);
-				whiteCube.GetComponent<Renderer> ().material.color = Color.white;
-				whiteCube.GetComponent<TestCube> ().x = s.gridPos.x;
-				whiteCube.GetComponent<TestCube> ().y = s.gridPos.y;
-				whiteCube.GetComponent<TestCube> ().neighbors = s.neighbors;
-			} else {
+			if (!s.walkway && !s.occupied) {
+				GameObject cube = Object.Instantiate (prefab, Vector3.zero, Quaternion.identity);
+				cube.transform.SetParent (testarea);
+				cube.transform.localPosition = new Vector3 (s.gridPos.x, 0, s.gridPos.y);
+				cube.GetComponent<Renderer> ().material.color = Color.white;
+				cube.GetComponent<TestCube> ().x = s.gridPos.x;
+				cube.GetComponent<TestCube> ().y = s.gridPos.y;
+				cube.GetComponent<TestCube> ().neighbors = s.neighbors;
+				cubes.Add(cube);
+			} else if(s.occupied && !s.walkway){
+				GameObject cube = Object.Instantiate(prefab, Vector3.zero, Quaternion.identity);
+				cube.transform.SetParent(testarea);
+				cube.transform.localPosition = new Vector3(s.gridPos.x, 0, s.gridPos.y);
+				cube.GetComponent<Renderer>().material.color = Color.magenta;
+				cube.GetComponent<TestCube>().x = s.gridPos.x;
+				cube.GetComponent<TestCube>().y = s.gridPos.y;
+				cube.GetComponent<TestCube>().neighbors = s.neighbors;
+				cubes.Add(cube);
+			}
+			else {
 				GameObject cube = Object.Instantiate (prefab, Vector3.zero, Quaternion.identity);
 				cube.transform.SetParent (testarea);
 				cube.transform.localPosition = new Vector3 (s.gridPos.x, 0, s.gridPos.y);
@@ -196,6 +221,7 @@ public class RoomGenerator : MonoBehaviour {
 				cube.GetComponent<TestCube> ().x = s.gridPos.x;
 				cube.GetComponent<TestCube> ().y = s.gridPos.y;
 				cube.GetComponent<TestCube> ().neighbors = s.neighbors;
+				cubes.Add(cube);
 			}
 		}
 		//testarea.position = new Vector3 (-185, 20, -42); //
@@ -225,6 +251,7 @@ public class RoomGenerator : MonoBehaviour {
 		for (int i = 0; i < 6; i++) {
 			pickAndSpawn (endtable, checks, oneXonePrefabs [Random.Range (0, oneXoneSize)]);
 		}
+		// DrawMap();
 
 	}
 
@@ -294,6 +321,7 @@ public class RoomGenerator : MonoBehaviour {
 			for (int i = (int)shape.x; i <= (int)shape.z; i++) {
 				for (int j = (int)shape.y; j <= (int)shape.w; j++) {
 					spaces [i, j].occupied = true;
+					Debug.Log("+/+");
 				}
 			}
 			return;
