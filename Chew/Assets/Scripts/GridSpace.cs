@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class GridSpace{
 	public Vector2 gridPos;
-	public int neighbors;
-	public bool walkway, walkstart, occupied;
+	public Vector4 shape;
+	public Vector2 prime;
+	public GameObject prefab;
+	public string furniture;
+	public bool walkway, walkstart, occupied, isPrime;
+	public int x, y;
 
-	public GridSpace(Vector2 pos, int n){
+	public GridSpace(Vector2 pos){
 		gridPos = pos;
-		neighbors = n;
-		walkway = occupied = walkstart = false;
+		walkway = occupied = walkstart = isPrime = false;
+		furniture = "empty";
 	}
-	public GridSpace(Vector2 pos, int n, bool ww, bool ws){
+	public GridSpace(Vector2 pos, bool ww, bool ws){
 		gridPos = pos;
-		neighbors = n;
 		walkway = occupied = ww;
 		walkstart = ws;
-
+		isPrime = false;
+		if (ww) {
+			furniture = "walkway";
+		}
 	}
 }

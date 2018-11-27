@@ -2,24 +2,141 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestCube : MonoBehaviour{
-	public Vector2 gridPos;
-	public Vector4 shape;
-	public Vector2 prime;
-	public GameObject prefab;
-	public bool walkway, walkstart, occupied, isPrime;
-	public int x, y;
-}
+public class roomtools : MonoBehaviour {
 
-
-
-/*
-public GridSpace[,] markSpot(Vector2 shape, Vector2 spawn, GameObject prefab, string name, bool mustBeAnchoredX, bool mustBeAnchoredY, GridSpace [,] gridArray, int gridSizeX, int gridSizeY){
-		List<Vector2> temp = new List<Vector2> ();
-		temp.Add (spawn);
-		return markSpot (shape, temp, prefab, name, mustBeAnchoredX, mustBeAnchoredY, gridArray, gridSizeX, gridSizeY);
+	// Use this for initialization
+	void Start () {
+		
 	}
-	public GridSpace[,] markSpot(Vector2 shape, List<Vector2> checks, GameObject prefab, string name, bool mustBeAnchoredX, bool mustBeAnchoredY, GridSpace [,] gridArray, int gridSizeX, int gridSizeY){
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+	List<Vector2> findSpaces(Vector2 start, int height, int width, int totalWidth, int totalHeight,bool verbose, GridSpace [,] gridArray){
+		List<Vector2> results = new List<Vector2>();
+		if (verbose) {Debug.Log ("Start is: " + start + ". height is: " + height + " width is: " + width + "total width is: " + totalWidth + "total height is: " + totalHeight);}
+		if (verbose) {Debug.Log ("Searching for " + width + "x" + height + " large space starting from: (" + start.x + "," + start.y + ")");}
+		if (gridArray [(int)start.x, (int)start.y].occupied) {
+			if (verbose) {Debug.Log ("Space: " + start + " is a walkway");}
+			return results;
+		}
+		bool possible = true;
+		// check +/+
+		if (verbose) {Debug.Log ("Checking +/+");}
+		if ((start.x + (width - 1) >= totalWidth) || (start.y + (height - 1) >= totalHeight)) {
+			possible = false;
+			if (verbose) {Debug.Log ("+/+ availble space failed");}
+		} else{
+			if (verbose) {Debug.Log ("trying +/+");}
+			for (int x = 0; x < width; x++) {
+				for (int y = 0; y < height; y++) {
+					if (gridArray [((int)start.x) + x, ((int)start.y) + y].occupied) {
+						possible = false;
+						break;
+					}
+				}
+			}
+		}
+		if (possible) {
+			if (verbose) {Debug.Log ("+/+ found");}
+			float x = start.x + (width - 1);
+			float y = start.y + (height - 1);
+			results.Add (new Vector2 (x,y));
+		}
+		//check -/-
+		possible = true;
+		if ((start.x - (width-1) < 0) || (start.y - (height -1) < 0)) {
+			possible = false;
+			if (verbose) {Debug.Log ("-/- availble space failed");}
+		} else {
+			if (verbose) {Debug.Log ("trying -/-");}
+			for (int x = 0; x < width; x++) {
+				for (int y = 0; y < height; y++) {
+					if (gridArray [((int)start.x) - x, ((int)start.y) - y].occupied) {
+						possible = false;
+						break;
+					}
+				}
+			}
+		}
+		if (possible) {
+			if (verbose) {Debug.Log ("-/- found");}
+			float x = start.x - (width - 1);
+			float y = start.y - (height - 1);
+			results.Add (new Vector2 (x,y));
+		}
+		//check +/-
+		possible = true;
+		if ((start.x + (width - 1) >= totalWidth) || (start.y - (height +1) < 0)) {
+			possible = false;
+			if (verbose) {Debug.Log ("+/- availble space failed");}
+		} else {
+			if (verbose) {Debug.Log ("trying +/-");}
+			for (int x = 0; x < width; x++) {
+				for (int y = 0; y < height; y++) {
+					if (gridArray [((int)start.x) + x, ((int)start.y) - y].occupied) {
+						possible = false;
+						break;
+					}
+				}
+			}
+		}
+		if (possible) {
+			if (verbose) {Debug.Log ("+/- found");}
+			float x = start.x + (width - 1);
+			float y = start.y - (height - 1);
+			results.Add (new Vector2 (x,y));
+		}
+		//check -/+
+		possible = true;
+		if ((start.x - (width-1) < 0 )|| (start.y + (height - 1) >= totalHeight)) {
+			possible = false;
+			if (verbose) {Debug.Log ("-/+ availble space failed");}
+		} else {
+			if (verbose) {Debug.Log ("trying -/+");}
+			for (int x = 0; x < width; x++) {
+				for (int y = 0; y < height; y++) {
+					if (gridArray [((int)start.x) - x, ((int)start.y) + y].occupied) {
+						possible = false;
+						break;
+					}
+				}
+			}
+		}
+		if (possible) {
+			if (verbose) {Debug.Log ("-/+ found");}
+			float x = start.x - (width - 1);
+			float y = start.y + (height - 1);
+			results.Add (new Vector2 (x,y));
+		}
+		return results;
+	}
+
+	List<Vector4> findPossibles(Vector2 space, List<Vector2> checks, GridSpace [,] gridArray, int gridSizeX, int gridSizeY){
+		List<Vector4> possible = new List<Vector4> ();
+		foreach(Vector2 c in checks){
+			List<Vector2> results = new List<Vector2> ();
+			results = findSpaces (c, (int)space.x, (int)space.y, gridSizeX, gridSizeY, false, gridArray);
+			foreach (Vector2 v in results) {
+				possible.Add (new Vector4(c.x,c.y,v.x,v.y));
+			}
+		}
+		// Try again but with the flipped dimensions (if not a square)
+		// and if the space is close to corner
+		if (space.y != space.x) {
+			foreach (Vector2 c in checks) {
+				List<Vector2> results = new List<Vector2> ();
+				results = findSpaces (c, (int)space.y, (int)space.x, gridSizeX, gridSizeY, false, gridArray);
+				foreach (Vector2 v in results) {
+					possible.Add (new Vector4 (c.x, c.y, v.x, v.y));
+				}
+			}
+		}
+		return possible;
+	}
+
+	void markSpot(Vector2 shape, List<Vector2> checks, GameObject prefab, string name, bool mustBeAnchoredX, bool mustBeAnchoredY, GridSpace [,] gridArray, int gridSizeX, int gridSizeY){
 		List<Vector4> possible = new List<Vector4>();
 		possible = findPossibles(shape, checks, gridArray, gridSizeX, gridSizeY);
 		Vector4 choice = possible [Random.Range (0, possible.Count)]; // Pick one possible at random
@@ -66,7 +183,7 @@ public GridSpace[,] markSpot(Vector2 shape, Vector2 spawn, GameObject prefab, st
 				if (possible.Count != 0) {
 					choice = possible [Random.Range (0, possible.Count)];
 				} else {
-					return gridArray;
+					return;
 				}
 			}
 			counter++;
@@ -101,7 +218,7 @@ public GridSpace[,] markSpot(Vector2 shape, Vector2 spawn, GameObject prefab, st
 					}
 				}
 				gridArray[(int)choice.x,(int)choice.y].isPrime = true; // mark origin as prime
-				return gridArray;
+				return;
 			}
 			// +/-
 			if (x == 1 && y == -1) {
@@ -118,7 +235,7 @@ public GridSpace[,] markSpot(Vector2 shape, Vector2 spawn, GameObject prefab, st
 					}
 				}
 				gridArray[(int)choice.x,(int)choice.y].isPrime = true; // mark origin as prime
-				return gridArray;
+				return;
 			}
 			//-/+
 			if (x == -1 && y == 1) {
@@ -135,7 +252,7 @@ public GridSpace[,] markSpot(Vector2 shape, Vector2 spawn, GameObject prefab, st
 					}
 				}
 				gridArray[(int)choice.x,(int)choice.y].isPrime = true; // mark origin as prime
-				return gridArray;
+				return;
 			}
 			//--
 			for (int i = (int)choice.z; i <= (int)choice.x; i++) {
@@ -151,10 +268,7 @@ public GridSpace[,] markSpot(Vector2 shape, Vector2 spawn, GameObject prefab, st
 				}
 			}
 			gridArray[(int)choice.x,(int)choice.y].isPrime = true; // mark origin as prime
-			return gridArray;
+			return;
 		}
-		return gridArray;
 	}
-
-
-*/
+}
