@@ -7337,6 +7337,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 742544093984f224fbadfc74f0da4eb7, type: 2}
+    - target: {fileID: 100008, guid: a11d318bf37c01d489a19dc2dc33ed7d, type: 2}
+      propertyPath: m_TagString
+      value: chewable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a11d318bf37c01d489a19dc2dc33ed7d, type: 2}
   m_IsPrefabParent: 0
@@ -8419,6 +8423,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1211438132}
+  arr: []
+  objNumber: 0
 --- !u!195 &1211438132
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -8455,7 +8461,7 @@ GameObject:
   - component: {fileID: 1218133681}
   m_Layer: 0
   m_Name: bunnyAI1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8472,6 +8478,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1218133682}
+  arr: []
+  objNumber: 0
 --- !u!195 &1218133682
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -10277,6 +10285,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1404695729}
+  arr: []
+  objNumber: 0
 --- !u!195 &1404695729
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -12267,7 +12277,7 @@ GameObject:
   - component: {fileID: 1598805394}
   m_Layer: 0
   m_Name: bunnyAI2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12284,6 +12294,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1598805395}
+  arr: []
+  objNumber: 0
 --- !u!195 &1598805395
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -13251,7 +13263,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 89131f46d6bfc864699138153a2cc996, type: 2}
       propertyPath: m_TagString
-      value: Untagged
+      value: chewable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 89131f46d6bfc864699138153a2cc996, type: 2}
@@ -14898,7 +14910,7 @@ GameObject:
   - component: {fileID: 1898905943}
   m_Layer: 0
   m_Name: bunnyAI3
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14915,6 +14927,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1898905944}
+  arr: []
+  objNumber: 0
 --- !u!195 &1898905944
 NavMeshAgent:
   m_ObjectHideFlags: 0
