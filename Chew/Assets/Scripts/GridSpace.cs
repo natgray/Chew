@@ -8,13 +8,15 @@ public class GridSpace{
 	public Vector2 prime;
 	public GameObject prefab;
 	public string furniture;
-	public bool walkway, walkstart, occupied, isPrime;
+	public bool walkway, walkstart, occupied, isPrime, doorway;
 	public int x, y;
+	public List<GameObject> attachedProps;
 
 	public GridSpace(Vector2 pos){
 		gridPos = pos;
 		walkway = occupied = walkstart = isPrime = false;
 		furniture = "empty";
+		attachedProps = new List<GameObject> ();
 	}
 	public GridSpace(Vector2 pos, bool ww, bool ws){
 		gridPos = pos;
@@ -24,5 +26,6 @@ public class GridSpace{
 		if (ww) {
 			furniture = "walkway";
 		}
+		attachedProps = new List<GameObject> ();
 	}
 }

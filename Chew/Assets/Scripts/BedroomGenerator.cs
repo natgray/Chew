@@ -26,6 +26,7 @@ using UnityEngine;
 public class BedroomGenerator : MonoBehaviour {
 	public GridSpace[,] spaces;
 	int gridSizeX, gridSizeY;
+	public List<GridSpace> validSpawns;
 	public GameController gamecontroller;
 
 	// Use this for initialization
@@ -34,14 +35,19 @@ public class BedroomGenerator : MonoBehaviour {
 		gridSizeX = gameObject.GetComponent<Room> ().gridSizeX;
 		gridSizeY = gameObject.GetComponent<Room> ().gridSizeY;
 		generateFurniture ();
+		generateProps ();
+		generateDoors ();
 		//gameObject.GetComponent<Room> ().DrawMap ();
 		gameObject.GetComponent<Room> ().SpawnFurniture ();
+		gameObject.GetComponent<Room> ().spawnFloor ();
+		gameObject.GetComponent<Room> ().spawnWalls ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
 
 	void generateFurniture(){
 		//try adding a nightstand next to the bed
@@ -130,6 +136,56 @@ public class BedroomGenerator : MonoBehaviour {
 
 		//end of furniture generation
 	}
+	void generateProps(){
+		int desiredLamps = 2;
+		int desiredBooks = 3;
+		validSpawns = new List<GridSpace> ();
+		foreach(GridSpace s in spaces){
+			if ((s.isPrime) && (s.furniture.Equals ("nightstand") || s.furniture.Equals ("dresser"))) {
+				validSpawns.Add (s);
+			}
+		}
+		//pick something at random and spawn a lamp on it
+		while(validSpawns.Count != 0 && desiredLamps > 0) {
+				int choice = Random.Range (0, validSpawns.Count);
+				GridSpace s = validSpawns [choice];
+				s.attachedProps.Add (gamecontroller.GetComponent<PreFabLibrary> ().propLight);
+				validSpawns.RemoveAt (choice);
+			desiredLamps--;
+		}
+		//spawn some books on the ground
+		validSpawns.Clear ();
+		foreach(GridSpace s in spaces){
+			if (!s.occupied) {
+				validSpawns.Add (s);
+			}
+		}
+		desiredBooks = 2;
+		while (validSpawns.Count != 0 && desiredBooks > 0) {
+			int choice = Random.Range (0, validSpawns.Count);
+			GridSpace s = validSpawns [choice];
+			s.attachedProps.Add (gamecontroller.GetComponent<PreFabLibrary> ().getBook());
+			validSpawns.RemoveAt (choice);
+			desiredBooks--;
+		}
+	}
 
+	void generateDoors(){
+		int numOfDoors = Random.Range (1, 3);
+		List<Vector2> possibleDoors = new List<Vector2> ();
+		foreach (GridSpace s in spaces) {
+			if (s.walkway && (s.gridPos.x == 0 || s.gridPos.y == 0 || s.gridPos.x == gridSizeX -1 || s.gridPos.y == gridSizeY-1)) {
+				possibleDoors.Add (new Vector2 (s.gridPos.x, s.gridPos.y));
+			}
+		}
+		if (possibleDoors.Count != 0) {
+			for (int x = 0; x < numOfDoors; x++) {
+				int choice = Random.Range (0, possibleDoors.Count);
+				Vector2 door = possibleDoors [choice];
+				spaces [(int)door.x, (int)door.y].doorway = true;
+				possibleDoors.RemoveAt (choice);
+			}
+		}
+	}
 	// end of class
 }

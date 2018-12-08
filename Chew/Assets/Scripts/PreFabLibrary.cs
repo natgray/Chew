@@ -6,8 +6,10 @@ public class PreFabLibrary : MonoBehaviour {
 	public GameObject bed, nightstand, cube, dresser, deskandchair, smalltable, chair;
 	public GameObject floorlamp;
 	public GameObject bulb;
+	public GameObject propLight;
 	public Material woodOne, woodTwo, clothOne, clothTwo, plaster, flooring;
 	public List<GameObject> bookshelves = new List<GameObject>();
+	public List<GameObject> books = new List<GameObject>();
 
 	public GameObject getPrefab(string name){
 		if (name.Equals ("Bed")) {
@@ -27,6 +29,12 @@ public class PreFabLibrary : MonoBehaviour {
 		}
 	}
 
+	public GameObject getBook(){
+		if (books.Count == 0) {
+			return null;
+		}
+		return books [Random.Range (0, books.Count)];
+	}
 	public GameObject getBookShelf(){
 		if (bookshelves.Count == 0) {
 			return null;

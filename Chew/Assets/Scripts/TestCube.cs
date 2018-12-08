@@ -7,7 +7,7 @@ public class TestCube : MonoBehaviour{
 	public Vector4 shape;
 	public Vector2 prime;
 	public GameObject prefab;
-	public bool walkway, walkstart, occupied, isPrime;
+	public bool walkway, walkstart, occupied, isPrime, doorway;
 	public int x, y;
 }
 
