@@ -276,6 +276,7 @@ public class Room : MonoBehaviour
 						prop.transform.SetParent (gameObject.transform);
 						prop.transform.localPosition = (new Vector3 (s.gridPos.x, 1F, s.gridPos.y));
 						gamecontroller.regeisterDestructionSpot (prop);
+						prop.tag = "chewable";
 					}
 
 				}

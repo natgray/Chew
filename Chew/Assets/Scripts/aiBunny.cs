@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using System;
 
 public class aiBunny : MonoBehaviour
 {
@@ -41,6 +40,7 @@ public class aiBunny : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		arr = GameObject.FindGameObjectsWithTag("chewable");
         distance = Vector3.Distance(chewable.transform.position, transform.position);
         if (distance < 5)
         {
@@ -48,8 +48,7 @@ public class aiBunny : MonoBehaviour
             timeLeft -= Time.deltaTime;
             if (timeLeft < 0)
             {
-                objNumber = UnityEngine.Random.Range(0, arr.Length);
-                chewable = arr[objNumber].transform;
+				chewable = arr[Random.Range(0, arr.Length)].transform;
                 agent.SetDestination(chewable.transform.position);
                 timeLeft = 5;
             }
