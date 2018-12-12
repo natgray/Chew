@@ -41,11 +41,11 @@ public class Room : MonoBehaviour
 			}
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
 	{
-		
+
 	}
 
 	public void SpawnFurniture ()
@@ -54,6 +54,8 @@ public class Room : MonoBehaviour
 			if (s.isPrime) {
 				GameObject furniture = Object.Instantiate (s.prefab, Vector3.zero, Quaternion.Euler (-90, 0, 0));
 				furniture.transform.SetParent (gameObject.transform);
+				furniture.AddComponent<NavMeshObstacle> ();
+				furniture.GetComponent<NavMeshObstacle> ().carving = true;
 				if (s.furniture.Equals ("bed")) {
 					int rotation = 0;
 					// Decode rotation
@@ -416,6 +418,12 @@ public class Room : MonoBehaviour
 					wall.transform.localPosition = new Vector3 (s.gridPos.x, 1.49F, s.gridPos.y + 0.5F);
 					wall2.transform.localScale = new Vector3 (0.1F, 1.0F, wallHeight);
 					wall2.transform.localPosition = new Vector3 (s.gridPos.x, 1.49F, s.gridPos.y + 0.5F);
+					wall.AddComponent<NavMeshObstacle> ();
+					wall.GetComponent<NavMeshObstacle> ().carving = true;
+					wall.GetComponent<NavMeshObstacle> ().size = new Vector3 (0.05F, 0, 10);
+					wall2.AddComponent<NavMeshObstacle> ();
+					wall2.GetComponent<NavMeshObstacle> ().carving = true;
+					wall2.GetComponent<NavMeshObstacle> ().size = new Vector3 (0.05F, 0, 10);
 				}
 				wall.GetComponent<MeshRenderer> ().material = gamecontroller.GetComponent<PreFabLibrary> ().plaster;
 				wall2.GetComponent<MeshRenderer> ().material = gamecontroller.GetComponent<PreFabLibrary> ().plaster;
@@ -439,6 +447,12 @@ public class Room : MonoBehaviour
 					wall.transform.localPosition = new Vector3 (s.gridPos.x, 1.49F, s.gridPos.y- 0.5F);
 					wall2.transform.localScale = new Vector3 (0.1F, 1.0F, wallHeight);
 					wall2.transform.localPosition = new Vector3 (s.gridPos.x, 1.49F, s.gridPos.y- 0.5F);
+					wall.AddComponent<NavMeshObstacle> ();
+					wall.GetComponent<NavMeshObstacle> ().carving = true;
+					wall.GetComponent<NavMeshObstacle> ().size = new Vector3 (0.05F, 0, 10);
+					wall2.AddComponent<NavMeshObstacle> ();
+					wall2.GetComponent<NavMeshObstacle> ().carving = true;
+					wall2.GetComponent<NavMeshObstacle> ().size = new Vector3 (0.05F, 0, 10);
 				}
 				wall.GetComponent<MeshRenderer> ().material = gamecontroller.GetComponent<PreFabLibrary> ().plaster;
 				wall2.GetComponent<MeshRenderer> ().material = gamecontroller.GetComponent<PreFabLibrary> ().plaster;
@@ -461,6 +475,12 @@ public class Room : MonoBehaviour
 					wall.transform.localPosition = new Vector3 (s.gridPos.x + 0.5F, 1.49F, s.gridPos.y);
 					wall2.transform.localScale = new Vector3 (0.1F, 1.0F, wallHeight);
 					wall2.transform.localPosition = new Vector3 (s.gridPos.x + 0.5F, 1.49F, s.gridPos.y);
+					wall.AddComponent<NavMeshObstacle> ();
+					wall.GetComponent<NavMeshObstacle> ().carving = true;
+					wall.GetComponent<NavMeshObstacle> ().size = new Vector3 (0.05F, 0, 10);
+					wall2.AddComponent<NavMeshObstacle> ();
+					wall2.GetComponent<NavMeshObstacle> ().carving = true;
+					wall2.GetComponent<NavMeshObstacle> ().size = new Vector3 (0.05F, 0, 10);
 				}
 				wall.GetComponent<MeshRenderer> ().material = gamecontroller.GetComponent<PreFabLibrary> ().plaster;
 				wall2.GetComponent<MeshRenderer> ().material = gamecontroller.GetComponent<PreFabLibrary> ().plaster;
@@ -483,6 +503,12 @@ public class Room : MonoBehaviour
 					wall.transform.localPosition = new Vector3 (s.gridPos.x-0.5F, 1.49F, s.gridPos.y);
 					wall2.transform.localScale = new Vector3 (0.1F, 1.0F, wallHeight);
 					wall2.transform.localPosition = new Vector3 (s.gridPos.x-0.5F, 1.49F, s.gridPos.y);
+					wall.AddComponent<NavMeshObstacle> ();
+					wall.GetComponent<NavMeshObstacle> ().carving = true;
+					wall.GetComponent<NavMeshObstacle> ().size = new Vector3 (0.05F, 0, 10);
+					wall2.AddComponent<NavMeshObstacle> ();
+					wall2.GetComponent<NavMeshObstacle> ().carving = true;
+					wall2.GetComponent<NavMeshObstacle> ().size = new Vector3 (0.05F, 0, 10);
 				}
 				wall.GetComponent<MeshRenderer> ().material = gamecontroller.GetComponent<PreFabLibrary> ().plaster;
 				wall2.GetComponent<MeshRenderer> ().material = gamecontroller.GetComponent<PreFabLibrary> ().plaster;
