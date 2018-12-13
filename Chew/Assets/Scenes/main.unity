@@ -266,12 +266,12 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 260350689}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 90bbfdb9cb52fbc45bddb720fe89340f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.282
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -773,14 +773,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec6270060ea3524b957762908376687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bed: {fileID: 1951941598534354, guid: 6806a6a13129ad14290ae0169f67354c, type: 2}
-  nightstand: {fileID: 1576427978221306, guid: 8a67825736857054299b178a2cbfc803, type: 2}
+  bed: {fileID: 1259632290249440, guid: 6806a6a13129ad14290ae0169f67354c, type: 2}
+  nightstand: {fileID: 1161143878492598, guid: 8a67825736857054299b178a2cbfc803, type: 2}
   cube: {fileID: 1870948773204380, guid: cca8647e106f1c04bbc4089abb6b19f1, type: 2}
-  dresser: {fileID: 1875782742026852, guid: 793e5c96ae567284d91127e6ba016a97, type: 2}
-  deskandchair: {fileID: 1005113823851352, guid: 3c100532a296ad2439208b84f14e376a,
+  dresser: {fileID: 1726564401449614, guid: 793e5c96ae567284d91127e6ba016a97, type: 2}
+  deskandchair: {fileID: 1655615914980260, guid: 3c100532a296ad2439208b84f14e376a,
     type: 2}
-  smalltable: {fileID: 1571890112151218, guid: d21506576248771459a88f7dcac13328, type: 2}
-  chair: {fileID: 1896160240745342, guid: 39dda796d052b214fb5e89c538e72605, type: 2}
+  smalltable: {fileID: 1627948079937670, guid: d21506576248771459a88f7dcac13328, type: 2}
+  chair: {fileID: 1806934481976038, guid: 39dda796d052b214fb5e89c538e72605, type: 2}
   floorlamp: {fileID: 1485787739693472, guid: d90fc6e0cbf1c42468b8ab50011d4b17, type: 2}
   bulb: {fileID: 1332832944770920, guid: 222344efac442b2439483edbe9bd8705, type: 2}
   propLight: {fileID: 1041276093973810, guid: a1403ea76bc1f9b4e9a46c49cf579f38, type: 2}
@@ -791,9 +791,9 @@ MonoBehaviour:
   plaster: {fileID: 2100000, guid: 447af63d3f5313547a25da114afb5ee7, type: 2}
   flooring: {fileID: 2100000, guid: 6f90cc129e1858945a85717e46aeb3b8, type: 2}
   bookshelves:
-  - {fileID: 1364012081612316, guid: d4e40f33354b58d4980e97626c72a568, type: 2}
-  - {fileID: 1353607835481544, guid: 3dfeb49bb769f4a4ba54d0ec50a8f129, type: 2}
-  - {fileID: 1398910901797514, guid: adf5db9d3d1dda945be12def7c559202, type: 2}
+  - {fileID: 1355209098673182, guid: d4e40f33354b58d4980e97626c72a568, type: 2}
+  - {fileID: 1649145519498638, guid: 3dfeb49bb769f4a4ba54d0ec50a8f129, type: 2}
+  - {fileID: 1456915285586160, guid: adf5db9d3d1dda945be12def7c559202, type: 2}
   books:
   - {fileID: 1378627422154138, guid: 97c77a45786cb4c4ca727df16b4fcf7a, type: 2}
   - {fileID: 1617504934800246, guid: 97b643d6344809547a759a9fed87c4db, type: 2}
@@ -1691,7 +1691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  jumpSpeed: 8
+  jumpSpeed: 5
   rabbitGravity: 20
   RotateSpeed: 3
   mouseSpeed: 3

@@ -54,8 +54,6 @@ public class Room : MonoBehaviour
 			if (s.isPrime) {
 				GameObject furniture = Object.Instantiate (s.prefab, Vector3.zero, Quaternion.Euler (-90, 0, 0));
 				furniture.transform.SetParent (gameObject.transform);
-				furniture.AddComponent<NavMeshObstacle> ();
-				furniture.GetComponent<NavMeshObstacle> ().carving = true;
 				if (s.furniture.Equals ("bed")) {
 					int rotation = 0;
 					// Decode rotation

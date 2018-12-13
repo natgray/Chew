@@ -2,7 +2,17 @@ fileFormatVersion: 2
 guid: 66b5e48ebfdc28b418cb0026721841da
 timeCreated: 18446744011573954816
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Num0
+    21300002: Num1
+    21300004: Num2
+    21300006: Num3
+    21300008: Num4
+    21300010: Num5
+    21300012: Num6
+    21300014: Num7
+    21300016: Num8
+    21300018: Num9
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
