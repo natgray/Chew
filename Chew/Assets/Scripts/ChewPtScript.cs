@@ -7,7 +7,7 @@ public class chewPtScript : MonoBehaviour {
 	int chewColor = 0;
 	public Material yellow;
 	public Material red;
-	public Transform rabbit;
+	public GameObject rabbit;
 
 	void CheckPos(float x, float z)
 	{
@@ -34,8 +34,7 @@ public class chewPtScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		//CheckPos() against the rabbit character here.
-		CheckPos(100, 100);
-		//CheckPos(rabbit.position.x, rabbit.position.y)
+		//TODO: CheckPos() against the rabbit character here.
+		CheckPos(rabbit.transform.position.x, rabbit.transform.position.z);
 	}
 }

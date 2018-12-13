@@ -5,12 +5,14 @@ using UnityEngine.AI;
 
 public class GameController : MonoBehaviour {
 	List<GameObject> rooms;
-	List<GameObject> destructionSpots;
+	public List<GameObject> destructionSpots;
 	List<Vector2> roomSlots;
 	public GameObject prefab;
 	public List<NavMeshSurface> surfaces;
+	public GameObject testSpot;
+
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		rooms = new List<GameObject> ();
 		surfaces = new List<NavMeshSurface> ();
 		gameObject.AddComponent<NavMeshSurface> ();
@@ -20,7 +22,7 @@ public class GameController : MonoBehaviour {
 		roomSlots.Add (new Vector2(0,1));
 		roomSlots.Add (new Vector2(1,1));
 		roomSlots.Add (new Vector2(1,0));
-
+		regeisterDestructionSpot (testSpot);
 		destructionSpots = new List<GameObject> ();
 		for (int x = 0; x < 4; x++) {
 			GameObject room = new GameObject ();

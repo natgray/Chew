@@ -12,7 +12,7 @@ public class aiScript : MonoBehaviour {
     //Animator animate;
     float distance;
     int health = 0;
-    public GameObject[] arr;
+    public List<GameObject> bunnies;
     public int objNumber;
     float timeLeft = 5;
 
@@ -21,10 +21,13 @@ public class aiScript : MonoBehaviour {
     void Start () {
         //animate = GetComponent<Animator>();
         //animate.SetTrigger("walk");
-
-        arr = GameObject.FindGameObjectsWithTag("Player");
-        objNumber = UnityEngine.Random.Range(0, arr.Length);
-        Player = arr[objNumber].transform;
+		bunnies = new List<GameObject>();
+		GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
+		foreach (GameObject b in temp) {
+			bunnies.Add (b);
+		}
+        objNumber = UnityEngine.Random.Range(0, bunnies.Count);
+        Player = bunnies[objNumber].transform;
         PlayerLocation = GameObject.FindGameObjectWithTag("Player");
 
 
@@ -49,8 +52,8 @@ public class aiScript : MonoBehaviour {
         }
         if (timeLeft < 0)
         {
-            objNumber = UnityEngine.Random.Range(0, arr.Length);
-            Player = arr[objNumber].transform;
+            objNumber = UnityEngine.Random.Range(0, bunnies.Count);
+            Player = bunnies[objNumber].transform;
             agent.SetDestination(Player.transform.position);
             timeLeft = 5;
             Debug.Log("Picking new target");
@@ -74,4 +77,8 @@ public class aiScript : MonoBehaviour {
 
 
     }
+
+	public void deregisterBunny(GameObject bunny){
+		bunnies.Remove (bunny);
+	}
 }
