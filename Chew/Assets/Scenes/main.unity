@@ -143,8 +143,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1a8408efef57794794989535cb413a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   agent: {fileID: 161231919}
   Player1: {fileID: 1939031766}
   arr: []
@@ -270,12 +270,12 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 260350689}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 90bbfdb9cb52fbc45bddb720fe89340f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.282
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -440,8 +440,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1a8408efef57794794989535cb413a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   agent: {fileID: 376259038}
   Player1: {fileID: 1939031766}
   arr:
@@ -761,8 +761,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6105e78331e9da498eb4b40580dba1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   prefab: {fileID: 1870948773204380, guid: cca8647e106f1c04bbc4089abb6b19f1, type: 2}
   surfaces:
   - {fileID: 0}
@@ -775,8 +775,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 569a21df712e9f2438d4a7e3b8cba620, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   oneXoneSize: 5
   oneXonePrefabs:
   - {fileID: 100000, guid: 8fc847fdd92983f43b5183ed20e269a3, type: 2}
@@ -795,10 +795,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fec6270060ea3524b957762908376687, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bed: {fileID: 1951941598534354, guid: 6806a6a13129ad14290ae0169f67354c, type: 2}
-  nightstand: {fileID: 1576427978221306, guid: 8a67825736857054299b178a2cbfc803, type: 2}
+  m_Name:
+  m_EditorClassIdentifier:
+  bed: {fileID: 1259632290249440, guid: 6806a6a13129ad14290ae0169f67354c, type: 2}
+  nightstand: {fileID: 1161143878492598, guid: 8a67825736857054299b178a2cbfc803, type: 2}
   cube: {fileID: 1870948773204380, guid: cca8647e106f1c04bbc4089abb6b19f1, type: 2}
   dresser: {fileID: 1875782742026852, guid: 793e5c96ae567284d91127e6ba016a97, type: 2}
   deskandchair: {fileID: 1335492312525820, guid: 54248b02f7ba0814599ab5dc7f1da1df,
@@ -815,9 +815,9 @@ MonoBehaviour:
   plaster: {fileID: 2100000, guid: 23c8dda499d8e8b4c862e7be01277b1b, type: 2}
   flooring: {fileID: 2100000, guid: 485b0348a404c5e49bd85ba15a2efed8, type: 2}
   bookshelves:
-  - {fileID: 1364012081612316, guid: d4e40f33354b58d4980e97626c72a568, type: 2}
-  - {fileID: 1353607835481544, guid: 3dfeb49bb769f4a4ba54d0ec50a8f129, type: 2}
-  - {fileID: 1398910901797514, guid: adf5db9d3d1dda945be12def7c559202, type: 2}
+  - {fileID: 1355209098673182, guid: d4e40f33354b58d4980e97626c72a568, type: 2}
+  - {fileID: 1649145519498638, guid: 3dfeb49bb769f4a4ba54d0ec50a8f129, type: 2}
+  - {fileID: 1456915285586160, guid: adf5db9d3d1dda945be12def7c559202, type: 2}
   books:
   - {fileID: 1378627422154138, guid: 97c77a45786cb4c4ca727df16b4fcf7a, type: 2}
   - {fileID: 1617504934800246, guid: 97b643d6344809547a759a9fed87c4db, type: 2}
@@ -1005,7 +1005,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1030611968
@@ -1546,8 +1546,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1077351063, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -1564,8 +1564,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -619905303, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
@@ -1782,10 +1782,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f00039199396ffa47affb76cda4216cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   speed: 6
-  jumpSpeed: 8
+  jumpSpeed: 5
   rabbitGravity: 20
   RotateSpeed: 3
   mouseSpeed: 3
@@ -2059,8 +2059,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   profile: {fileID: 11400000, guid: a83cf41f031aadd419a8453b62df1d6e, type: 2}
 --- !u!1 &2117608032
 GameObject:
@@ -2112,8 +2112,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26d3df82edfa03a4d832f748165c7e83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   Player1: {fileID: 1939031766}
   agent: {fileID: 2117608033}
   arr: []
@@ -2246,8 +2246,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1a8408efef57794794989535cb413a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   agent: {fileID: 2130156588}
   Player1: {fileID: 1939031766}
   arr: []
