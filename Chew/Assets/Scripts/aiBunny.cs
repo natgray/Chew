@@ -84,7 +84,7 @@ public class aiBunny : MonoBehaviour
         if (health == 0)
         {
             bunnyMesh.enabled = false;
-            //Destroy(Bunny);
+            Destroy(Bunny);
 
         }
 

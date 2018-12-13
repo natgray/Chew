@@ -39,6 +39,7 @@ public class aiScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        PlayerLocation = GameObject.FindGameObjectWithTag("Player");
         distance = Vector3.Distance(Player.position, transform.position);
       
         if (distance < 5)
@@ -48,6 +49,8 @@ public class aiScript : MonoBehaviour {
         }
         if (timeLeft < 0)
         {
+            objNumber = UnityEngine.Random.Range(0, arr.Length);
+            Player = arr[objNumber].transform;
             agent.SetDestination(Player.transform.position);
             timeLeft = 5;
             Debug.Log("Picking new target");
