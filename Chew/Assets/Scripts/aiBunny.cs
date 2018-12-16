@@ -7,18 +7,15 @@ public class aiBunny : MonoBehaviour
 {
 
     public NavMeshAgent agent;
-    private Transform chewable;
+	private GameObject chewable;
     private Transform enemyDistance;
-    public Transform Player1;
+    public GameObject humanAI;
     float chewPointDistance;
     float enemydistance;
-    public GameObject[] arr;
     float timeLeft = 5;
-    public int objNumber;
     public float health = 100;
     public GameObject Bunny;
-    public MeshRenderer bunnyMesh;
-
+	public GameController gamecontroller;
    
 
    
@@ -27,47 +24,33 @@ public class aiBunny : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
-        arr = GameObject.FindGameObjectsWithTag("chewable");
-        //enemyHuman = GameObject.FindGameObjectWithTag("enemy");
-       
         agent = GetComponent<NavMeshAgent>();
-
-        objNumber = UnityEngine.Random.Range(0, arr.Length);
-
-        chewable = arr[objNumber].transform;      
-
-        if (chewable == null)
-        {
-            chewable = GameObject.FindWithTag("chewable").transform;
-        }
 
         if (enemyDistance == null)
         {
             enemyDistance = GameObject.FindWithTag("enemy").transform;
         }
-      
-      
-
-        //chewables = GameObject.FindWithTag("AIBunny").transform;
-        agent.SetDestination(chewable.transform.position);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        arr = GameObject.FindGameObjectsWithTag("chewable");
+		if (chewable == null)
+		{
+			Debug.Log (gameObject.name + ": chewable was null.");
+			chewable = gamecontroller.getRandomDestructionSpot(); 
+			agent.SetDestination(chewable.transform.position);
+		}
         chewPointDistance = Vector3.Distance(chewable.transform.position, transform.position);
         enemydistance = Vector3.Distance(enemyDistance.transform.position, transform.position);
-        bunnyMesh = GetComponent<MeshRenderer>();
         if (chewPointDistance < 5)
         {
             //animate.SetTrigger("attack");
             timeLeft -= Time.deltaTime;
             if (timeLeft < 0)
             {
-                chewable = arr[Random.Range(0, arr.Length)].transform;
+				chewable = gamecontroller.getRandomDestructionSpot();
                 agent.SetDestination(chewable.transform.position);
                 timeLeft = 5;
             }
@@ -81,10 +64,9 @@ public class aiBunny : MonoBehaviour
         {
             health = health - 0.25f;
         }
-        if (health == 0)
+        if (health < -60)
         {
-            bunnyMesh.enabled = false;
-			Player1.GetComponent<aiScript> ().deregisterBunny (gameObject);
+			humanAI.GetComponent<aiScript> ().deregisterBunny (gameObject);
             Destroy(gameObject);
 
         }

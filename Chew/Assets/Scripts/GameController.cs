@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		Cursor.lockState = CursorLockMode.Confined;
 		rooms = new List<GameObject> ();
 		surfaces = new List<NavMeshSurface> ();
 		gameObject.AddComponent<NavMeshSurface> ();
@@ -44,6 +45,13 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
+	public GameObject getRandomDestructionSpot(){
+		if (destructionSpots.Count == 0) {
+			Debug.Log ("No destruction Spots found");
+			return null;
+		}
+		return destructionSpots [Random.Range (0, destructionSpots.Count)];
+	}
 	public void regeisterDestructionSpot (GameObject g){
 		destructionSpots.Add (g);
 	}

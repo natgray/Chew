@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 	private int rabbitState = 0; // 0 grounded, 1 is periscoped *change to more formal state implementation later
 	Vector3 temp;
 
+    public float health = 100;
+
 	void Start()
 	{
 		controller = GetComponent<CharacterController>();
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour
 		gravity = rabbitGravity;
 		// let the gameObject fall down
 		gameObject.transform.position = new Vector3(0, 5, 0);
+
 	}
 
 	void Update()
