@@ -18,5 +18,11 @@ public class healthBarScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         healthBar.fillAmount = health / maxHealth;
+
+        if (healthBar.fillAmount == 0)
+        {
+            Debug.Log("Quitting");
+            Application.Quit();
+        }
 	}
 }
