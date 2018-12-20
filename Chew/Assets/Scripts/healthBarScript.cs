@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class healthBarScript : MonoBehaviour {
-
+	public GameController gamecontroller;
     Image healthBar;
     float maxHealth = 100f;
     public static float health;
@@ -21,8 +21,7 @@ public class healthBarScript : MonoBehaviour {
 
         if (healthBar.fillAmount == 0)
         {
-            Debug.Log("Quitting");
-            Application.Quit();
+			gamecontroller.setGameOver ();
         }
 	}
 }

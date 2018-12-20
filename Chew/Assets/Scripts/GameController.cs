@@ -2,17 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameController : MonoBehaviour {
 	List<GameObject> rooms;
 	public List<GameObject> destructionSpots;
 	List<Vector2> roomSlots;
-	public GameObject prefab;
 	public List<NavMeshSurface> surfaces;
-	public GameObject testSpot;
+	public Canvas UI, GameOverUI;
+	public GameObject PlayerRabbit, HumanAI;
+	public PlayerController PlayerController;
+	private bool gameOver, tipTimedOut, RabbitVictory;
+	private float tipTimeOut;
+	public TextMeshProUGUI bookCountText, gameOverText;
 
 	// Use this for initialization
 	void Awake () {
+		UI.enabled = true;
+		GameOverUI.enabled = false;
+		gameOver = false;
+		tipTimeOut = 5.0F;
+		tipTimedOut = false;
 		Cursor.lockState = CursorLockMode.Confined;
 		rooms = new List<GameObject> ();
 		surfaces = new List<NavMeshSurface> ();
@@ -23,12 +34,10 @@ public class GameController : MonoBehaviour {
 		roomSlots.Add (new Vector2(0,1));
 		roomSlots.Add (new Vector2(1,1));
 		roomSlots.Add (new Vector2(1,0));
-		regeisterDestructionSpot (testSpot);
 		destructionSpots = new List<GameObject> ();
 		for (int x = 0; x < 4; x++) {
 			GameObject room = new GameObject ();
 			room.AddComponent<Room> ();
-			room.GetComponent<Room> ().cubePrefab = prefab;
 			room.GetComponent<Room> ().gamecontroller = this;
 			int len = Random.Range(4,9);
 			int width = Random.Range(4,9);
@@ -59,8 +68,44 @@ public class GameController : MonoBehaviour {
 	public void regeisterNavMesh(NavMeshSurface surface){
 		surfaces.Add (surface);
 	}
+
+	public void deregeisterDestructionSpot (GameObject g){
+		destructionSpots.Remove (g);
+	}
 	// Update is called once per frame
 	void Update () {
-		
+		if (destructionSpots.Count <= 0) {
+			RabbitVictory = true;
+			setGameOver ();
+		}
+		if (Input.GetKey ("f") && gameOver) {
+			SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
+		}
+		if (Input.GetKey ("q") && gameOver) {
+			Debug.Log ("Quitting");
+			Application.Quit ();
+		}
+		if(tipTimeOut <= 0){
+			tipTimedOut = true;
+		}
+		if (!tipTimedOut) {
+			tipTimeOut -= Time.deltaTime;
+		} else {
+			bookCountText.SetText ("Books remaining: " + destructionSpots.Count);
+		}
+	}
+
+	public void setGameOver(){
+		UI.enabled = false;
+		GameOverUI.enabled = true;
+		gameOver = true;
+		if (RabbitVictory) {
+			gameOverText.SetText ("You won! \n Press F to Restart \n Press Q to Quit");
+			Destroy (HumanAI);
+		} else {
+			gameOverText.SetText ("Game Over :( \n Press F to Restart \n Press Q to Quit");
+			PlayerRabbit.GetComponent<SkinnedMeshRenderer> ().enabled = false;
+			PlayerController.speed = 0.0F;
+		}
 	}
 }

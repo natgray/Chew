@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class chewPtScript : MonoBehaviour {
+public class ChewPtScript : MonoBehaviour {
 
+	Renderer myRend;
 	int chewColor = 0;
-	public Material yellow;
-	public Material red;
 	public GameObject rabbit;
+	Color farColor = Color.white;
+	Color closeColor = Color.green;
+	const float radius = 0.5f;
 
 	void CheckPos(float x, float z)
 	{
@@ -18,23 +20,28 @@ public class chewPtScript : MonoBehaviour {
 		chewX = Mathf.Abs(chewX - x);
 		chewZ = Mathf.Abs(chewZ - z);
 
-		if (chewX < 5 && chewZ < 5)
+		if (chewX < radius && chewX > -radius && chewZ < radius && chewZ > -radius)
 		{
-			GetComponent<Renderer>().material = red;
+			myRend.material.SetColor("_Color", closeColor);
 		} else
 		{
-			GetComponent<Renderer>().material = yellow;
+			myRend.material.SetColor("_Color", farColor);
 		}
 	}
 
 	// Use this for initialization
 	void Start () {
+		myRend = GetComponent<Renderer>();
 
+		if (rabbit = GameObject.Find("Player"))
+		{
+			Debug.Log("passing");
+		}
 	}
 
 	// Update is called once per frame
 	void Update () {
-		//TODO: CheckPos() against the rabbit character here.
+		//Done: CheckPos() against the rabbit character here.
 		CheckPos(rabbit.transform.position.x, rabbit.transform.position.z);
 	}
 }

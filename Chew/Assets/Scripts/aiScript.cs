@@ -39,10 +39,6 @@ public class aiScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if (playerHealth < 0){
-			Debug.Log("Quitting");
-			Application.Quit();
-		}
 		if (target == null) {
 			target = bunnies[Random.Range(0, bunnies.Count)].transform;
 		}

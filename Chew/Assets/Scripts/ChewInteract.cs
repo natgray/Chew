@@ -68,6 +68,7 @@ public class ChewInteract : MonoBehaviour
             if (chewHpArray[index] <= 0)
             {
                 gameControlObj.destructionSpots[index].GetComponent<MeshRenderer>().enabled = false;
+				gameControlObj.deregeisterDestructionSpot (gameControlObj.destructionSpots [index]);
             }
             //gameControlObj.destructionSpots[index].GetComponent<MeshFilter>().mesh = destroyedMesh;
             return true;

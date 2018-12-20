@@ -27,6 +27,7 @@ public class Room : MonoBehaviour
 		halfX /= 2;
 		halfY /= 2;
 		wallHeight = 0.3F;
+		cubePrefab = gamecontroller.GetComponent<PreFabLibrary> ().cube;
 		corners = new List<Vector2> ();
 		corners.Add (new Vector2 (0, 0));
 		corners.Add (new Vector2 (gridSizeX - 1, 0));
@@ -273,6 +274,7 @@ public class Room : MonoBehaviour
 				if (s.attachedProps.Count != 0) {
 					foreach (GameObject p in s.attachedProps) {
 						GameObject prop = Object.Instantiate (p, Vector3.zero, Quaternion.Euler (0, 0, -90));
+						prop.AddComponent<ChewPtScript> ();
 						prop.transform.SetParent (gameObject.transform);
 						prop.transform.localPosition = (new Vector3 (s.gridPos.x, 1F, s.gridPos.y));
 						gamecontroller.regeisterDestructionSpot (prop);
