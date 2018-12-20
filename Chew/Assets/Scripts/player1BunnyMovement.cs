@@ -5,11 +5,8 @@ using UnityEngine;
 public class player1BunnyMovement : MonoBehaviour {
 
     Animator anim;
-
-    bool walking,running = false;
-    bool idle = true;
-
-   // int jumpHash = Animator.StringToHash("Jump");
+    
+    //int jumpHash = Animator.StringToHash("Jump");
     //int runStateHash = Animator.StringToHash("Base Layer.Run");
 
     // Use this for initialization
@@ -20,7 +17,7 @@ public class player1BunnyMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //anim.Play("Rab_Idle01", 0);
-
+        //|| Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
             anim.SetBool("isRunning", true);
