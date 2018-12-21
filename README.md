@@ -1,56 +1,37 @@
 
-http://newtonians3d.blogspot.com/2014/09/simple-third-person-character-movement.html## Chew
+Release (Zip ith .exe)
+https://github.com/natgray/Chew/releases/tag/v0.1-alpha
 
 # CST 426 Group Project - *Chew*
 **Group Members:** 
 Natalie Gray, Nicco Engbeck, Cullen Marchenko, Roberto Bradley
 
+**Chew** is a video game based on rabbits running amok and a human trying to stop them from destroying their home
+
+## Outcomes Addressed
+- [X] Procedural Generate Levels
+- [ ] Model Player and apply it to game difficulty management
+- [X] Physics-Based lighting model and simulations
+- [X] Model behaviour of non-player characters
+
+## Major features
+- Procedural generated levels (Credit: Natalie)
+- Working Chew points with highlighting (Credit: Cullen)
+- Post Processing effects (Credit: Nicco)
+- AI Human and AI Rabbits (Credit: Nicco)
+- Working Rabbit Models (Credit: Nicco)
+
+## Game Instructions
+- Chew all the books in the level!
+- Chew by pressing Left Mouse Button while near a book
+- Health is displayed in upper righthand corner
+- If health reaches zero the human has captured you :(
+- You win if all books are destroyed
+- Your rabbit friends can help lead you to remaining books
+
+## Known bugs
+- Sometimes a single room will fail to load (Does not effect Gameplay)
+- Sometimes the Human AI will become fixated on a wall (Approaching the human typically snaps them out of it)
+- Periscope (RMB) is currently bugged
 
 
-**Chew** is a video game based on rabbits running amok and a player trying to rally them up
-
-Time spent: 
-
-## Milestones / Major Outcomes
-
-The following **required** outcomes and functionality is completed:
-
-- [] Procedural Generate Levels
-- [] Model PLayer and apply it to game difficulty management
-- [] Physics-Based simulations
-- [] Model behaviour of non-player characters
-
-The following **stretch** features are implemented:
-
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-
-## Video Walkthrough
-
-Here's a walkthrough of implemented user stories:
-
-<img src='https://i.imgur.com/ln6M8X4.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
-
-## Credits
-
-List an 3rd party libraries, icons, graphics, or other assets you used in your app.
-
-
-
-## Notes
-
-Describe any challenges encountered while building the game.
-
-
-## License
-
-    Copyright 2018 Natalie Gray, Nicco Engbeck, Cullen Marchenko, Roberto Bradley
-
- ## Possible Links For resources.
- https://www.cgtrader.com/3d-models/animals/mammal/poly-art-rabbits
- http://newtonians3d.blogspot.com/2014/09/simple-third-person-character-movement.html
