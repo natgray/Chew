@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour {
 	public Canvas UI, GameOverUI;
 	public GameObject PlayerRabbit, HumanAI;
 	public PlayerController PlayerController;
-	private bool gameOver, tipTimedOut, RabbitVictory;
+	private bool gameOver, tipTimedOut, rabbitVictory;
 	private float tipTimeOut;
 	public TextMeshProUGUI bookCountText, gameOverText;
 
@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour {
 		UI.enabled = true;
 		GameOverUI.enabled = false;
 		gameOver = false;
+		rabbitVictory = false;
 		tipTimeOut = 5.0F;
 		tipTimedOut = false;
 		Cursor.lockState = CursorLockMode.Confined;
@@ -75,7 +76,7 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (destructionSpots.Count <= 0) {
-			RabbitVictory = true;
+			rabbitVictory = true;
 			setGameOver ();
 		}
 		if (Input.GetKey ("f") && gameOver) {
@@ -99,7 +100,7 @@ public class GameController : MonoBehaviour {
 		UI.enabled = false;
 		GameOverUI.enabled = true;
 		gameOver = true;
-		if (RabbitVictory) {
+		if (rabbitVictory) {
 			gameOverText.SetText ("You won! \n Press F to Restart \n Press Q to Quit");
 			Destroy (HumanAI);
 		} else {
