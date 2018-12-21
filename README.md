@@ -1,5 +1,5 @@
 
-Release (Zip ith .exe)
+Release (Zip with .exe)
 https://github.com/natgray/Chew/releases/tag/v0.1-alpha
 
 # CST 426 Group Project - *Chew*
