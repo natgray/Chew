@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour {
 	public Canvas UI, GameOverUI;
 	public GameObject PlayerRabbit, HumanAI;
 	public PlayerController PlayerController;
-	private bool gameOver, tipTimedOut, rabbitVictory;
+	public bool gameOver, tipTimedOut, rabbitVictory;
 	private float tipTimeOut;
 	public TextMeshProUGUI bookCountText, gameOverText;
 
@@ -52,6 +52,9 @@ public class GameController : MonoBehaviour {
 
 		for (int i = 0; i < surfaces.Count; i++) {
 			surfaces [i].BuildNavMesh ();
+		}
+		if (gameOver || GameOverUI.isActiveAndEnabled) {
+			SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
 		}
 	}
 
