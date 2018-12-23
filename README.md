@@ -32,6 +32,5 @@ Natalie Gray, Nicco Engbeck, Cullen Marchenko, Roberto Bradley
 ## Known bugs
 - Sometimes a single room will fail to load (Does not effect Gameplay)
 - Sometimes the Human AI will become fixated on a wall (Approaching the human typically snaps them out of it)
-- Periscope (RMB) is currently bugged
 
 
